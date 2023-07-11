@@ -83,12 +83,14 @@ export default function Game() {
     );
   });
 
+  
   return(
     <div className='game'>
       <div className='game-board'>
         <Board xIsNext={xIsNext} squares={currentSquares} onPlay={handlePlay}/>
       </div>
       <div className='game-info'>
+        <div className='move-number'>You are at move #{currentMove}</div>
         <ol>{moves}</ol>
       </div>
     </div>
