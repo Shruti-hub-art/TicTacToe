@@ -65,6 +65,7 @@ function Board({ xIsNext, squares, onPlay}) {
 export default function Game() {
   const [history, setHistory] = useState([Array(9).fill(null)]);
   const [currentMove, setCurrentMove] = useState(0);
+  const [ascending, setAscending] = useState(true);
   const xIsNext = currentMove % 2 === 0;
   const currentSquares = history[currentMove];
 
@@ -79,12 +80,19 @@ export default function Game() {
   }
 
   const moves = history.map((squares, move) => {
+    if (ascending) {
+      move = history.length - 1 - move;
+    }
     let description;
     if (move > 0) {
       description = 'Go to move #' + move;
     } else {
       description = 'Go to game start';
     }
+    if (move === currentMove) {
+      description = <b>{description}</b>;
+    }
+    //Additional Feature: Add a toggle button that lets you sort the moves in either ascending or descending order.
     return (
       <li key={move}>
         <button onClick={() => jumpTo(move)}>{description}</button>
@@ -102,6 +110,9 @@ export default function Game() {
         {/* Additional Feature: For the current move only, show “You are at move #…” instead of a button.*/}
         <div className='move-number'>You are at move #{currentMove}</div>
         <ol>{moves}</ol>
+      </div>
+      <div className='ascending-toggle'>
+        <button onClick={() => setAscending(!ascending)}>Toggle Ascending/Descending</button>
       </div>
     </div>
   );
