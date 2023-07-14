@@ -31,24 +31,33 @@ function Board({ xIsNext, squares, onPlay}) {
     status = 'Next player: ' + (xIsNext ? 'X' : 'O');
   }
 
+  // Additional Feature: Use loops to make the squares instead of hardcoding them.
+  const board = [];
+  for (let i = 0; i < 3; i++) {
+    const row = [];
+    for (let j = 0; j < 3; j++) {
+      const squareIndex = i * 3 + j;
+      row.push(
+        <Square
+          key={squareIndex}
+          value={squares[squareIndex]}
+          onSquareClick={() => handleClick(squareIndex)}
+        />
+      );
+    }
+    board.push(
+      <div key={i} className="board-row">
+        {row}
+      </div>
+    );
+  }
+
+
+
   return (
     <div>
       <div className="status">{status}</div>
-      <div className="board-row">
-        <Square value={squares[0]} onSquareClick={() => handleClick(0)} />
-        <Square value={squares[1]} onSquareClick={() => handleClick(1)} />
-        <Square value={squares[2]} onSquareClick={() => handleClick(2)} />
-      </div>
-      <div className="board-row">
-        <Square value={squares[3]} onSquareClick={() => handleClick(3)} />
-        <Square value={squares[4]} onSquareClick={() => handleClick(4)} />
-        <Square value={squares[5]} onSquareClick={() => handleClick(5)} />
-      </div>
-      <div className="board-row">
-        <Square value={squares[6]} onSquareClick={() => handleClick(6)} />
-        <Square value={squares[7]} onSquareClick={() => handleClick(7)} />
-        <Square value={squares[8]} onSquareClick={() => handleClick(8)} />
-      </div>
+      {board}
     </div>
   );
 }
@@ -90,6 +99,7 @@ export default function Game() {
         <Board xIsNext={xIsNext} squares={currentSquares} onPlay={handlePlay}/>
       </div>
       <div className='game-info'>
+        {/* Additional Feature: For the current move only, show “You are at move #…” instead of a button.*/}
         <div className='move-number'>You are at move #{currentMove}</div>
         <ol>{moves}</ol>
       </div>
