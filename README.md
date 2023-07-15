@@ -11,3 +11,8 @@
 - When someone wins, highlight the three squares that caused the win (and when no one wins, display a message about the result being a draw).
 - Display the location for each move in the format (row, col) in the move history list.
 - Display a seperate game options panel that lets you start a new game, and toggle move list sorting.
+
+### Running the game
+- Clone the repository
+- Run `npm install` in the root directory
+- Run `npm start` in the root directory
