@@ -125,23 +125,26 @@ export default function Game() {
   });
 
   return(
-    <div className='game'>
-      <div className='game-board'>
-        <Board xIsNext={xIsNext} squares={currentSquares} onPlay={handlePlay}/>
-      </div>
-      <div className='game-info'>
-        {/* Additional Feature: For the current move only, show “You are at move #…” instead of a button.*/}
-        <div className='move-number'>You are at move #{currentMove}</div>
-        <ol>{moves}</ol>
-      </div>
-      {/*Additional Feature: Add a toggle button that lets you sort the moves in either ascending or descending order.*/}
-      <div className='game-options'>
-        <div className='game-options-title'>Game Options</div>
-        <div className='ascending-toggle'>
-          <button onClick={() => setAscending(!ascending)}>Toggle Move List Ascending/Descending</button>
+    <div className='game-container'>
+      <div className='game-title'>Tic Tac Toe</div>
+      <div className='game'>
+        <div className='game-board'>
+          <Board xIsNext={xIsNext} squares={currentSquares} onPlay={handlePlay}/>
         </div>
-        <div className='reset-button'>
-          <button onClick={() => resetGame()}>Reset Game</button>
+        <div className='game-info'>
+          {/* Additional Feature: For the current move only, show “You are at move #…” instead of a button.*/}
+          <div className='move-number'>You are at move #{currentMove}</div>
+          <ol>{moves}</ol>
+        </div>
+        {/*Additional Feature: Add a toggle button that lets you sort the moves in either ascending or descending order.*/}
+        <div className='game-options'>
+          <div className='game-options-title'>Game Options</div>
+          <div className='ascending-toggle'>
+            <button onClick={() => setAscending(!ascending)}>Toggle Move List Ascending/Descending</button>
+          </div>
+          <div className='reset-button'>
+            <button onClick={() => resetGame()}>Reset Game</button>
+          </div>
         </div>
       </div>
     </div>

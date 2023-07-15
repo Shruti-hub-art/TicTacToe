@@ -82,6 +82,22 @@ body {
   text-align: center;
   font-weight: bold;
 }
+
+.game-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.game-title {
+  font: 2em sans-serif;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
 .game {
   display: flex;
   flex-direction: row;
