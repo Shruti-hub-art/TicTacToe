@@ -68,9 +68,6 @@ function Board({ xIsNext, squares, onPlay}) {
       </div>
     );
   }
-
-
-
   return (
     <div>
       <div className="status">{status}</div>
@@ -101,8 +98,14 @@ export default function Game() {
       move = history.length - 1 - move;
     }
     let description;
+    // Additional Feature: Display the location for each move in the format (row, col) in the move history list.
+    const playedLocation = move > 0 ? history[move].findIndex((square, index) => square !== history[move - 1][index]) : null;
+    const x = playedLocation % 3;
+    const y = Math.floor(playedLocation / 3);
+    const playedCoordinates = '(' + x + ', ' + y + ')';
+    
     if (move > 0) {
-      description = 'Go to move #' + move;
+      description = 'Go to move #' + move + ' (' + (move % 2 === 0 ? 'O' : 'X') + ' played at ' + playedCoordinates + ')';
     } else {
       description = 'Go to game start';
     }
