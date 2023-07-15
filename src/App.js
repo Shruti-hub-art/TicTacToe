@@ -134,7 +134,7 @@ export default function Game() {
         <div className='game-info'>
           {/* Additional Feature: For the current move only, show “You are at move #…” instead of a button.*/}
           <div className='move-number'>You are at move #{currentMove}</div>
-          <ol>{moves}</ol>
+          <ol className='move-history-list'>{moves}</ol>
         </div>
         {/*Additional Feature: Add a toggle button that lets you sort the moves in either ascending or descending order.*/}
         <div className='game-options'>

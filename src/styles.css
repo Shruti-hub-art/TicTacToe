@@ -112,6 +112,10 @@ body {
   margin-left: 20px;
 }
 
+.move-history-list li {
+  margin-top: 5px;
+}
+
 .game-options {
   margin-left: 20px;
 }
