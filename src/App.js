@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 
 
-function Square({value, onSquareClick}) {
+function Square({value, color="white", onSquareClick}) {
   return (
-    <button className="square" onClick={onSquareClick}>
+    <button className="square" onClick={onSquareClick} style={{background: color}}>
       {value}
     </button>
   );
@@ -26,17 +26,34 @@ function Board({ xIsNext, squares, onPlay}) {
   const winner = calculateWinner(squares);
   let status;
   if (winner) {
-    status = 'Winner: ' + winner;
-  } else {
+    status = 'Winner: ' + squares[winner[0]];
+  } 
+  // Additional Feature: When no one wins, display a message about the result being a draw.
+  else if (squares.every((square) => square)) {
+    status = 'Draw';
+  }
+  else {
     status = 'Next player: ' + (xIsNext ? 'X' : 'O');
   }
 
   // Additional Feature: Use loops to make the squares instead of hardcoding them.
+  // Additional Feature: Change the color of the winning squares.
   const board = [];
   for (let i = 0; i < 3; i++) {
     const row = [];
     for (let j = 0; j < 3; j++) {
       const squareIndex = i * 3 + j;
+      if (winner && winner.includes(squareIndex)) {
+        row.push(
+          <Square
+            key={squareIndex}
+            value={squares[squareIndex]}
+            color="green"
+            onSquareClick={() => handleClick(squareIndex)}
+          />
+        );
+        continue;
+      }
       row.push(
         <Square
           key={squareIndex}
@@ -65,7 +82,7 @@ function Board({ xIsNext, squares, onPlay}) {
 export default function Game() {
   const [history, setHistory] = useState([Array(9).fill(null)]);
   const [currentMove, setCurrentMove] = useState(0);
-  const [ascending, setAscending] = useState(true);
+  const [ascending, setAscending] = useState(false);
   const xIsNext = currentMove % 2 === 0;
   const currentSquares = history[currentMove];
 
@@ -92,7 +109,6 @@ export default function Game() {
     if (move === currentMove) {
       description = <b>{description}</b>;
     }
-    //Additional Feature: Add a toggle button that lets you sort the moves in either ascending or descending order.
     return (
       <li key={move}>
         <button onClick={() => jumpTo(move)}>{description}</button>
@@ -111,6 +127,7 @@ export default function Game() {
         <div className='move-number'>You are at move #{currentMove}</div>
         <ol>{moves}</ol>
       </div>
+      {/*Additional Feature: Add a toggle button that lets you sort the moves in either ascending or descending order.*/}
       <div className='ascending-toggle'>
         <button onClick={() => setAscending(!ascending)}>Toggle Ascending/Descending</button>
       </div>
@@ -132,8 +149,8 @@ function calculateWinner(squares) {
   for (let i = 0; i < lines.length; i++) {
     const [a, b, c] = lines[i];
     if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
-      return squares[a];
+      return lines[i];
     }
   }
-  return null;
+  return ;
 }
