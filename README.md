@@ -1,6 +1,6 @@
 # Tic Tac Toe in React.js
 
-![Game Screenshot](/ReactTicTacToe/public/gameScreenshot.pngpublic/gameScreenshot.png)
+![Game Screenshot](/ReactTicTacToe/public/gameScreenshot.png)
 
 ## This repository is a game created with the help of the tutorial found at https://react.dev/learn/tutorial-tic-tac-toe including all the additional tasks mentioned at the end
 
