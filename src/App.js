@@ -93,6 +93,11 @@ export default function Game() {
     setCurrentMove(nextMove)
   }
 
+  function resetGame() {
+    setHistory([Array(9).fill(null)]);
+    setCurrentMove(0);
+  }
+
   const moves = history.map((squares, move) => {
     if (ascending) {
       move = history.length - 1 - move;
@@ -119,7 +124,6 @@ export default function Game() {
     );
   });
 
-  
   return(
     <div className='game'>
       <div className='game-board'>
@@ -131,8 +135,14 @@ export default function Game() {
         <ol>{moves}</ol>
       </div>
       {/*Additional Feature: Add a toggle button that lets you sort the moves in either ascending or descending order.*/}
-      <div className='ascending-toggle'>
-        <button onClick={() => setAscending(!ascending)}>Toggle Ascending/Descending</button>
+      <div className='game-options'>
+        <div className='game-options-title'>Game Options</div>
+        <div className='ascending-toggle'>
+          <button onClick={() => setAscending(!ascending)}>Toggle Move List Ascending/Descending</button>
+        </div>
+        <div className='reset-button'>
+          <button onClick={() => resetGame()}>Reset Game</button>
+        </div>
       </div>
     </div>
   );
