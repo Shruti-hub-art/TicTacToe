@@ -28,16 +28,12 @@ function Board({ xIsNext, squares, onPlay}) {
   if (winner) {
     status = 'Winner: ' + squares[winner[0]];
   } 
-  // Additional Feature: When no one wins, display a message about the result being a draw.
   else if (squares.every((square) => square)) {
     status = 'Draw';
   }
   else {
     status = 'Next player: ' + (xIsNext ? 'X' : 'O');
   }
-
-  // Additional Feature: Use loops to make the squares instead of hardcoding them.
-  // Additional Feature: Change the color of the winning squares.
   const board = [];
   for (let i = 0; i < 3; i++) {
     const row = [];
@@ -132,11 +128,9 @@ export default function Game() {
           <Board xIsNext={xIsNext} squares={currentSquares} onPlay={handlePlay}/>
         </div>
         <div className='game-info'>
-          {/* Additional Feature: For the current move only, show “You are at move #…” instead of a button.*/}
           <div className='move-number'>You are at move #{currentMove}</div>
           <ol className='move-history-list'>{moves}</ol>
         </div>
-        {/*Additional Feature: Add a toggle button that lets you sort the moves in either ascending or descending order.*/}
         <div className='game-options'>
           <div className='game-options-title'>Game Options</div>
           <div className='ascending-toggle'>
